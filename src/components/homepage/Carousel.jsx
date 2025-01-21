@@ -3,10 +3,11 @@ import {
   BsFillArrowRightCircleFill,
   BsFillArrowLeftCircleFill,
 } from "react-icons/bs";
+import image1 from "../../../public/images/image1.jpg";
 
 function Carousel() {
   const images = [
-    { id: 1, src: "/images/image1.jpg", alt: "Slide 1" },
+    { id: 1, src: image1, alt: "Slide 1" },
     { id: 2, src: "/images/image2.jpg", alt: "Slide 2" },
     { id: 3, src: "/images/image3.jpg", alt: "Slide 3" },
   ];
