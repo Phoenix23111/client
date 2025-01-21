@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { BsCart2 } from "react-icons/bs";
 
+import icons8usercircle from "../../../public/images/icons8-user-circle-96.png";
+
 function Navbar({ onAboutUsClick, onContactUsClick }) {
   const [count, setCount] = useState(0);
   const [scrolling, setScrolling] = useState(false);
@@ -59,7 +61,7 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
             <button className=" rounded-full w-12 h-12 felx items-center overflow-hidden object-cover ">
               <img
                 className="w-full h-full object-cover bg-white"
-                src="/images/icons8-user-circle-96.png"
+                src={icons8usercircle}
                 alt=""
               />
             </button>

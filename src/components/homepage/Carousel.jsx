@@ -4,12 +4,14 @@ import {
   BsFillArrowLeftCircleFill,
 } from "react-icons/bs";
 import image1 from "../../../public/images/image1.jpg";
+import image2 from "../../../public/images/image2.jpg";
+import image3 from "../../../public/images/image3.jpg";
 
 function Carousel() {
   const images = [
     { id: 1, src: image1, alt: "Slide 1" },
-    { id: 2, src: "/images/image2.jpg", alt: "Slide 2" },
-    { id: 3, src: "/images/image3.jpg", alt: "Slide 3" },
+    { id: 2, src: image2, alt: "Slide 2" },
+    { id: 3, src: image3, alt: "Slide 3" },
   ];
   let [current, setCurrent] = useState(0);
 

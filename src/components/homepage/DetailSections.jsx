@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
+import detimg1 from "../../../public/images/detimg1.jpg";
+import detimg2 from "../../../public/images/detimg2.jpg";
+import detimg3 from "../../../public/images/detimg3.jpg";
 
-function DetailSections({ aboutref}) {
+function DetailSections({ aboutref }) {
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
   const [visible3, setVisible3] = useState(false);
@@ -80,7 +83,7 @@ function DetailSections({ aboutref}) {
             }`}
           >
             <img
-              src="/images/detimg1.jpg"
+              src={detimg1}
               alt=""
               className="object-cover object-center rounded-lg"
             />
@@ -186,7 +189,7 @@ function DetailSections({ aboutref}) {
             }`}
           >
             <img
-              src="/images/detimg2.jpg"
+              src={detimg2}
               alt=""
               className="object-cover object-center rounded-lg"
             />
@@ -205,7 +208,7 @@ function DetailSections({ aboutref}) {
             }`}
           >
             <img
-              src="/images/detimg3.jpg"
+              src={detimg3}
               alt=""
               className="object-cover object-center rounded-lg"
             />

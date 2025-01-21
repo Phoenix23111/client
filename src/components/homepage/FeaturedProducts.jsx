@@ -1,10 +1,10 @@
 import React from "react";
 import ProductCardHome from "../products/ProductCardHome";
-import {
-  BsArrowLeftCircleFill,
-  BsArrowRightCircle,
-  BsArrowRightCircleFill,
-} from "react-icons/bs";
+import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
+import prod1img from "../../../public/images/prod1img.jpg";
+import image2 from "../../../public/images/image2.jpg";
+import image3 from "../../../public/images/image3.jpg";
+import image1 from "../../../public/images/image1.jpg";
 
 function FeaturedProducts() {
   return (
@@ -24,25 +24,25 @@ function FeaturedProducts() {
               prodName="Product 1"
               prodDesc="This is Product Description of Product 1"
               prodPrice="2000"
-              prodSrc="/images/prod1img.jpg"
+              prodSrc={prod1img}
             />
             <ProductCardHome
               prodName="Product 2"
               prodDesc="This is Product Description of Product 2"
               prodPrice="1000"
-              prodSrc="/images/image2.jpg"
+              prodSrc={image2}
             />
             <ProductCardHome
               prodName="Product 3"
               prodDesc="This is Product Description of Product 3"
               prodPrice="1240"
-              prodSrc="/images/image3.jpg"
+              prodSrc={image3}
             />
             <ProductCardHome
               prodName="Product 4"
               prodDesc="This is Product Description of Product 4"
               prodPrice="1650"
-              prodSrc="/images/image1.jpg"
+              prodSrc={image1}
             />
 
             <div className="hover:cursor-pointer absolute top-1/2 left-3 text-white/80 text-4xl">
