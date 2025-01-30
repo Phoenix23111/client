@@ -1,24 +1,24 @@
 import React from "react";
 import ProductCardHome from "../products/ProductCardHome";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
-import prod1img from "../../../public/images/prod1img.jpg";
-import image2 from "../../../public/images/image2.jpg";
-import image3 from "../../../public/images/image3.jpg";
-import image1 from "../../../public/images/image1.jpg";
+import prod1img from "/images/prod1img.jpg";
+import image2 from "/images/image2.jpg";
+import image3 from "/images/image3.jpg";
+import image1 from "/images/image1.jpg";
 
 function FeaturedProducts() {
   return (
     <>
-      <div className="flex flex-col w-full bg-gray-100  h-full">
-        <div className="flex items-center justify-center text-5xl font-bold py-10 ">
+      <div className="flex flex-col w-full bg-primary  h-full">
+        <div className="text-main flex items-center justify-center text-5xl font-bold py-10 ">
           Featured Products
         </div>
         <span className=" flex w-full px-96 items-center justify-center">
           <span className="border flex1 w-[25%] border-black"></span>
-          <span className="border flex1 w-[50%] h-2 bg-green-600 border-green-600"></span>
+          <span className="border flex1 w-[50%] h-2 bg-secondary border-secondary"></span>
           <span className="border flex1 w-[25%] border-black"></span>
         </span>
-        <div className=" bg-[url('/images/fprodbg.jpg')] bg-cover p-10 mt-10">
+        <div className=" bg-primary  p-10 mt-10">
           <div className=" relative flex h-auto justify-center items-center p-10  ">
             <ProductCardHome
               prodName="Product 1"
@@ -53,7 +53,7 @@ function FeaturedProducts() {
             </div>
           </div>
           <div className="mt-10 w-full flex justify-center items-center">
-            <button className=" active:bg-green-400 active:translate-y-0 active:transition-transform active:duration-100 duration-500 ease-in-out font-semibold text-lg bg-green-500 h-12 w-48 drop-shadow-xl rounded-lg hover:scale-105 hover:-translate-y-2  hover:transition-transform hover:duration-500 hover:ease-in-out ">
+            <button className="text-white active:bg-teal-800 active:translate-y-0 active:transition-transform active:duration-100 duration-500 ease-in-out font-semibold text-lg bg-main h-12 w-48 shadow-xl drop-shadow-xl rounded-lg hover:scale-105 hover:-translate-y-2  hover:transition-transform hover:duration-500 hover:ease-in-out ">
               Explore More
             </button>
           </div>

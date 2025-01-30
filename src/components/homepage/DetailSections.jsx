@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import detimg1 from "../../../public/images/detimg1.jpg";
-import detimg2 from "../../../public/images/detimg2.jpg";
-import detimg3 from "../../../public/images/detimg3.jpg";
+import detimg1 from "/images/detimg1.jpg";
+import detimg2 from "/images/detimg2.jpg";
+import detimg3 from "/images/detimg3.jpg";
 
 function DetailSections({ aboutref }) {
   const [visible1, setVisible1] = useState(false);
@@ -68,15 +68,15 @@ function DetailSections({ aboutref }) {
     <>
       <div
         ref={aboutref}
-        className="w-auto h-full flex flex-col gap-20 m-14 px-16"
+        className="w-auto h-full flex flex-col gap-20 m-14 px-28"
       >
         {/* row - 1 */}
         <div
           ref={ref1}
-          className="bg-transparent backdrop-blur-lg rounded-3xl backdrop-brightness-110 w-full gap-20 px-10 py-16 flex sm:flex-col  lg:flex-row "
+          className="bg-secondary/20 shadow-2xl backdrop-blur-md rounded-3xl backdrop-brightness-125 w-full h-full gap-14 px-10 py-10 flex justify-center  sm:flex-col  lg:flex-row "
         >
           <div
-            className={`transform  backdrop-blur-sm transition-all duration-[2000ms] ease-in-out w-auto flex-1 h-auto ${
+            className={`flex  mx-h-full transform  backdrop-blur-sm transition-all duration-[2000ms] ease-in-out  flex-1  ${
               visible1
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 -translate-x-16"
@@ -85,18 +85,18 @@ function DetailSections({ aboutref }) {
             <img
               src={detimg1}
               alt=""
-              className="object-cover object-center rounded-lg"
+              className=" w-full object-cover rounded-lg"
             />
           </div>
           <div
-            className={`transform transition-all duration-[2000ms] ease-in-out w-full flex flex-1 py-14 flex-col gap-4 h-auto text-wrap${
+            className={`transform  transition-all duration-[2000ms] text-center  ease-in-out w-full flex flex-1  flex-col gap-4 h-auto text-wrap${
               visible1
                 ? " opacity-100 translate-x-0"
                 : " opacity-0 translate-x-24"
             }`}
           >
             <div className="text-white font-bold text-2xl  ">Welcome to</div>
-            <div className="text-green-500  text-5xl font-extrabold">
+            <div className="text-main  text-5xl font-extrabold">
               Design Solution Store
             </div>
             <div className=" font-bold text-lg">
@@ -132,18 +132,18 @@ function DetailSections({ aboutref }) {
         {/* row - 2 */}
         <div
           ref={ref2}
-          className="bg-transparent backdrop-blur-lg rounded-3xl backdrop-brightness-110 w-full gap-20 px-10 py-16 flex sm:flex-col  lg:flex-row "
+          className="bg-secondary/20 shadow-2xl backdrop-blur-md rounded-3xl backdrop-brightness-125 w-full gap-14 px-10 py-10 flex justify-center items-center sm:flex-col  lg:flex-row "
         >
           <div
-            className={`transform transition-all duration-[2000ms] ease-in-out w-full flex flex-1 py-14 flex-col gap-4 h-auto text-wrap${
+            className={`transform transition-all duration-[2000ms] text-center ease-in-out w-full flex flex-1  flex-col gap-4 h-auto text-wrap${
               visible2
                 ? " opacity-100 translate-x-0"
                 : " opacity-0 -translate-x-24"
             }`}
           >
-            <div className="flex text-4xl font-extrabold">
+            <div className="flex text-4xl justify-center text-center font-extrabold">
               <p className="text-black pe-3">Our</p>
-              <p className="text-green-500">Mission</p>
+              <p className="text-main">Mission</p>
             </div>
             <div className="text-sm">
               At DSS, we are driven by a singular mission: to set unmatched
@@ -182,7 +182,7 @@ function DetailSections({ aboutref }) {
             </div>
           </div>
           <div
-            className={`transform transition-all duration-[2000ms] ease-in-out w-auto flex-1 h-auto ${
+            className={`transform transition-all duration-[2000ms] ease-in-out w-auto flex-1 h-full ${
               visible2
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 translate-x-24"
@@ -198,10 +198,10 @@ function DetailSections({ aboutref }) {
         {/* row - 3 */}
         <div
           ref={ref3}
-          className="bg-transparent backdrop-blur-lg rounded-3xl backdrop-brightness-110 w-full gap-20 px-10 py-16 flex sm:flex-col  lg:flex-row "
+          className="bg-secondary/20 shadow-2xl  backdrop-blur-md rounded-3xl backdrop-brightness-125 w-full gap-14 px-10 py-10 flex justify-center items-center sm:flex-col  lg:flex-row "
         >
           <div
-            className={`transform transition-all duration-[2000ms] ease-in-out w-auto flex-1 h-auto ${
+            className={`transform transition-all duration-[2000ms] ease-in-out  w-auto flex-1 h-auto ${
               visible3
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 -translate-x-16"
@@ -214,15 +214,15 @@ function DetailSections({ aboutref }) {
             />
           </div>
           <div
-            className={`transform transition-all duration-[2000ms] ease-in-out w-full flex flex-1 py-14 flex-col gap-4 h-auto text-wrap${
+            className={`transform transition-all text-center duration-[2000ms] ease-in-out w-full flex flex-1 flex-col gap-4 h-auto text-wrap${
               visible3
                 ? " opacity-100 translate-x-0"
                 : " opacity-0 translate-x-24"
             }`}
           >
-            <div className="flex text-4xl font-extrabold">
+            <div className="flex text-4xl font-extrabold justify-center ">
               <p className="text-black pe-3">Our</p>
-              <p className="text-green-500">Vision</p>
+              <p className="text-main">Vision</p>
             </div>
             <div className="text-sm">
               We envision reaching the zenith of craftsmanship, where every

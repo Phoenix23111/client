@@ -3,9 +3,9 @@ import {
   BsFillArrowRightCircleFill,
   BsFillArrowLeftCircleFill,
 } from "react-icons/bs";
-import image1 from "../../../public/images/image1.jpg";
-import image2 from "../../../public/images/image2.jpg";
-import image3 from "../../../public/images/image3.jpg";
+import image1 from "/images/image1.jpg";
+import image2 from "/images/image2.jpg";
+import image3 from "/images/image3.jpg";
 
 function Carousel() {
   const images = [
@@ -69,7 +69,7 @@ function Carousel() {
             key={"circle" + image.id - 1}
             className={`cursor-pointer lg:w-7 lg:h-1 sm:w-4 sm:h-1 ${
               image.id - 1 === current
-                ? "bg-green-600"
+                ? "bg-main"
                 : "bg-transparent backdrop-blur-3xl brightness-200 "
             }`}
           ></div>
