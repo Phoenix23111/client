@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCardHome from "../products/ProductCardHome";
+import ProductCardHome from "../productspage/ProductCardHome";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import prod1img from "/images/prod1img.jpg";
 import image2 from "/images/image2.jpg";

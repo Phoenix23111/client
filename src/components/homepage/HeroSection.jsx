@@ -1,10 +1,22 @@
 import React from "react";
-import heroimg from "/images/bg-img.png";
+import herobgvid from "/images/herobgvid.mp4";
 
 function HeroSection() {
   return (
-    <div className="mt-20 relative h-[40vh] bg-[url('/images/bg-img.png')] w-full bg-cover bg-blend-overlay bg-black/50  sm:h-[50vh] md:h-[70vh] lg:h-screen box-border p-28 px-44 pt-16">
-      <div className="relative overflow-hidden w-full h-full bg-secondary/10 backdrop-brightness-75 text-primary grid-rows-[auto,1fr] backdrop-blur-md rounded-xl flex flex-col justify-center gap-20 p-10">
+    <div className="mt-20 relative h-[40vh] overflow-hidden  w-full bg-cover bg-blend-overlay bg-black/50  sm:h-[50vh] md:h-[70vh] lg:h-screen box-border ">
+      <video
+        muted
+        disablePictureInPicture
+        playsInline
+        autoPlay
+        loop
+        controlsList="nodownload nofullscreen noplaybackrate"
+        onContextMenu={(e) => e.preventDefault()}
+        className=" absolute top-0 left-0 w-full object-cover h-[120vh]"
+      >
+        <source src={herobgvid} type="video/mp4" />
+      </video>
+      <div className="absolute top-16 left-40 overflow-hidden w-[80%] h-[80%] bg-secondary/30 backdrop-brightness-90 text-main grid-rows-[auto,1fr] backdrop-blur-md rounded-xl flex flex-col justify-center gap-20 p-10 shadow-2xl shadow-white/30">
         <div className="text-6xl font-bold  mb-5  ">
           DSS-Design Solution Store
         </div>

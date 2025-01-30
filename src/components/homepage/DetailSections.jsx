@@ -130,7 +130,7 @@ function DetailSections({ aboutref }) {
           </div>
         </div>
         {/* row - 2 */}
-        <div
+        {/* <div
           ref={ref2}
           className="bg-secondary/20 shadow-2xl backdrop-blur-md rounded-3xl backdrop-brightness-125 w-full gap-14 px-10 py-10 flex justify-center items-center sm:flex-col  lg:flex-row "
         >
@@ -194,9 +194,9 @@ function DetailSections({ aboutref }) {
               className="object-cover object-center rounded-lg"
             />
           </div>
-        </div>
+        </div> */}
         {/* row - 3 */}
-        <div
+        {/* <div
           ref={ref3}
           className="bg-secondary/20 shadow-2xl  backdrop-blur-md rounded-3xl backdrop-brightness-125 w-full gap-14 px-10 py-10 flex justify-center items-center sm:flex-col  lg:flex-row "
         >
@@ -256,7 +256,7 @@ function DetailSections({ aboutref }) {
               Elevate Your Vision – Redefining Excellence with DSS
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -69,7 +69,9 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
             About Us
           </button>
           <div className=" font-bold"> Gallery</div>
-          <div className=" font-bold"> Products</div>
+          <Link to={"/products"}>
+            <div className=" font-bold"> Products</div>
+          </Link>
           <button onClick={onContactUsClick} className=" font-bold">
             Contact Us
           </button>

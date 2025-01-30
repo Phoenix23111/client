@@ -1,8 +1,11 @@
 import React, { useRef } from "react";
+import CartPageNavbar from "../components/cartpage/CartPageNavbar";
 
 const CartPage = () => {
   return (
-    <div className=" relative w-full flex bg-[url('/images/bg-img2.jpg')] bg-fixed  bg-cover flex-col"></div>
+    <div className=" relative w-full flex  bg-fixed  bg-cover flex-col">
+      <CartPageNavbar />
+    </div>
   );
 };
 
