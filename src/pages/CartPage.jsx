@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
-import CartPageNavbar from "../components/cartpage/CartPageNavbar";
+import ProductsNavbar from "../components/productspage/ProductsNavbar";
 
 const CartPage = () => {
   return (
-    <div className=" relative w-full flex  bg-fixed  bg-cover flex-col">
-      <CartPageNavbar />
+    <div className=" grid w-full h-full">
+      <ProductsNavbar />
     </div>
   );
 };

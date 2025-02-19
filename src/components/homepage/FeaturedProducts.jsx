@@ -10,16 +10,16 @@ function FeaturedProducts() {
   return (
     <>
       <div className="flex flex-col w-full bg-primary  h-full">
-        <div className="text-main flex items-center justify-center text-5xl font-bold py-10 ">
+        <div className="text-main flex items-center justify-center text-4xl md:text-5xl  font-bold py-10 ">
           Featured Products
         </div>
-        <span className=" flex w-full px-96 items-center justify-center">
+        <span className=" flex w-full px-24 md:px-96 items-center justify-center">
           <span className="border flex1 w-[25%] border-black"></span>
           <span className="border flex1 w-[50%] h-2 bg-secondary border-secondary"></span>
           <span className="border flex1 w-[25%] border-black"></span>
         </span>
         <div className=" bg-primary  p-10 mt-10">
-          <div className=" relative flex h-auto justify-center items-center p-10  ">
+          <div className=" relative flex flex-wrap h-auto justify-center items-center p-10  ">
             <ProductCardHome
               prodName="Product 1"
               prodDesc="This is Product Description of Product 1"

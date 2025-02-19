@@ -61,7 +61,7 @@ const SignUpForm = ({ handletogglestate }) => {
             Already Have an Account?{" "}
             <button
               onClick={() => handletogglestate("login")}
-              className="text-secondary font-bold pl-2 underline"
+              className="text-white font-bold pl-2 underline"
             >
               LogIn
             </button>

@@ -26,11 +26,11 @@ const ArrowToTop = () => {
       onClick={() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }}
-      className={`shadow-2xl  hover:cursor-pointer hover:bg-spearmint transition-all duration-500 flex justify-center w-12 h-12 rounded-full bg-main m-5 fixed text-white  bottom-24 right-10  items-center ${
+      className={`shadow-2xl  hover:cursor-pointer hover:bg-spearmint transition-all duration-500 flex justify-center w-14 h-14 rounded-full bg-main m-5 fixed text-white  bottom-28 right-0  items-center ${
         visible ? "block" : "hidden"
       } `}
     >
-      <BiSolidArrowToTop className="text-3xl font-bold" />
+      <BiSolidArrowToTop className="text-4xl font-bold" />
     </div>
   );
 };

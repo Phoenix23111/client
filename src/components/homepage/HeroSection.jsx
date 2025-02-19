@@ -3,7 +3,7 @@ import herobgvid from "/images/herobgvid.mp4";
 
 function HeroSection() {
   return (
-    <div className="mt-20 relative h-[40vh] overflow-hidden  w-full bg-cover bg-blend-overlay bg-black/50  sm:h-[50vh] md:h-[70vh] lg:h-screen box-border ">
+    <div className="mt-20 relative  overflow-hidden  w-full bg-cover bg-blend-overlay bg-black/50 h-screen box-border ">
       <video
         muted
         disablePictureInPicture

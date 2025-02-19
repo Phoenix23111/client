@@ -48,17 +48,17 @@ function ContactUs({ aboutcontactus }) {
       className="flex flex-col w-full bg-secondary h-full"
     >
       {/* contactUs TEXT */}
-      <div className="flex items-center justify-center text-5xl font-bold py-10">
+      <div className="flex items-center justify-center text-5xl text-main font-bold py-10">
         Contact Us
       </div>
       {/* Line span */}
-      <span className=" flex w-full px-96 items-center justify-center">
+      <span className=" flex w-full px-24 md:px-96 items-center justify-center">
         <span className="border flex1 w-[25%] border-black"></span>
         <span className="border flex1 w-[50%] h-2 bg-primary border-primary"></span>
         <span className="border flex1 w-[25%] border-black"></span>
       </span>
       {/* Form for Contact */}
-      <div className="flex justify-center items-center bg-[url('/images/contactusimg.jpg')] bg-cover py-10 px-80 mt-10">
+      <div className="flex justify-center items-center bg-[url('/images/contactusimg.jpg')] bg-cover py-3 px-3 lg:py-10 lg:px-80 mt-10">
         <form
           onSubmit={handleSubmit}
           action="post"
@@ -105,8 +105,8 @@ function ContactUs({ aboutcontactus }) {
         </form>
       </div>
 
-      {/* grid */}
-      <div className="mt-10 grid grid-flow-row grid-cols-2 grid-rows-auto w-full px-10  bg-main text-white h-auto justify-around">
+      {/* maps grid */}
+      <div className="mt-10 grid grid-flow-row grid-cols-1 md:grid-cols-2 grid-rows-auto w-full md:px-10  bg-main text-white h-auto justify-around">
         <div className="flex row-span-1 col-span-2 flex-1 w-full flex-col text-center items-center gap-8 px-5 py-5">
           <h1 className="text-2xl w-[50%] font-bold py-3 border-b-2 border-b-secondary">
             Contacts
@@ -116,18 +116,43 @@ function ContactUs({ aboutcontactus }) {
             mhtariqmajeed@gmail.com
           </h3>
         </div>
-        <div className="flex  row-span-1 col-span-2 text-center justify-center items-center text-2xl font-bold mt-3 py-3">
+        <div className="flex  row-span-1 col-span-2  text-center justify-center items-center text-2xl font-bold mt-3 py-3">
           <h1 className="text-2xl w-[50%] font-bold py-3 border-b-2 border-b-secondary">
             Addresses
           </h1>
         </div>
-        <div className=" col-span-2 w-full h-full text-center items-center ">
-          <div className="grid grid-flow-row grid-cols-2">
-            <div className=" w-full h-full col-span-1">
+        <div className=" col-span-2 w-full h-full text-center items-center mb-1  ">
+          <div className="grid grid-flow-row  md:grid-cols-2">
+            <div className=" w-full h-full col-span-1 ">
               <h2 className="font-semibold underline py-5">
                 {locations[0].name}
               </h2>
               <h3>{locations[0].address}</h3>
+              <div className="col-span-1 md:rounded-xl overflow-hidden  w-full h-96 pt-6 p-2 md:p-6">
+                <APIProvider apiKey={apikey}>
+                  <Map
+                    className="w-full h-full rounded-xl md:rounded-3xl overflow-hidden"
+                    defaultZoom={17}
+                    defaultCenter={{
+                      lat: locations[0].lat,
+                      lng: locations[0].lng,
+                    }}
+                    mapId={import.meta.env.VITE_GOOGLE_MAPS_ID}
+                    fullscreenControl={false}
+                    streetViewControl={false}
+                  >
+                    <AdvancedMarker
+                      onClick={() => {
+                        setOpen1(true);
+                      }}
+                      position={{
+                        lat: locations[0].lat,
+                        lng: locations[0].lng,
+                      }}
+                    />
+                  </Map>
+                </APIProvider>
+              </div>
             </div>
 
             <div className="w-full h-full col-span-1">
@@ -135,51 +160,33 @@ function ContactUs({ aboutcontactus }) {
                 {locations[1].name}
               </h2>
               <h3>{locations[1].address}</h3>
-            </div>
-            <div className="col-span-1 rounded-xl overflow-hidden  w-full h-96 p-6">
-              <APIProvider apiKey={apikey}>
-                <Map
-                  className="w-full h-full rounded-3xl overflow-hidden"
-                  defaultZoom={17}
-                  defaultCenter={{
-                    lat: locations[0].lat,
-                    lng: locations[0].lng,
-                  }}
-                  mapId={import.meta.env.VITE_GOOGLE_MAPS_ID}
-                  fullscreenControl={false}
-                  streetViewControl={false}
-                >
-                  <AdvancedMarker
-                    onClick={() => {
-                      setOpen1(true);
+
+              <div className="col-span-1 md:rounded-xl overflow-hidden  w-full h-96 pt-6 p-2 md:p-6">
+                <APIProvider apiKey={apikey}>
+                  <Map
+                    className="w-full h-full rounded-xl md:rounded-3xl overflow-hidden"
+                    defaultZoom={17}
+                    defaultCenter={{
+                      lat: locations[1].lat,
+                      lng: locations[1].lng,
                     }}
-                    position={{ lat: locations[0].lat, lng: locations[0].lng }}
-                  />
-                </Map>
-              </APIProvider>
-            </div>
-            <div className="col-span-1  w-full h-96 p-6">
-              <APIProvider apiKey={apikey}>
-                <Map
-                  className="w-full h-full rounded-3xl overflow-hidden"
-                  defaultZoom={17}
-                  defaultCenter={{
-                    lat: locations[1].lat,
-                    lng: locations[1].lng,
-                  }}
-                  mapId={import.meta.env.VITE_GOOGLE_MAPS_ID}
-                  fullscreenControl={false}
-                  streetViewControl={false}
-                >
-                  <AdvancedMarker
-                    onClick={() => {
-                      setOpen2(true);
-                    }}
-                    position={{ lat: locations[1].lat, lng: locations[1].lng }}
-                  />
-                </Map>
-                {/* {open && <InfoWindow></InfoWindow>} */}
-              </APIProvider>
+                    mapId={import.meta.env.VITE_GOOGLE_MAPS_ID}
+                    fullscreenControl={false}
+                    streetViewControl={false}
+                  >
+                    <AdvancedMarker
+                      onClick={() => {
+                        setOpen2(true);
+                      }}
+                      position={{
+                        lat: locations[1].lat,
+                        lng: locations[1].lng,
+                      }}
+                    />
+                  </Map>
+                  {/* {open && <InfoWindow></InfoWindow>} */}
+                </APIProvider>
+              </div>
             </div>
           </div>
         </div>

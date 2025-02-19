@@ -17,18 +17,33 @@ function HomePage() {
 
   const scrollToAbout = () => {
     if (aboutRef.current) {
-      aboutRef.current.scrollIntoView({ behavior: "smooth" });
+      const offset = 90;
+      const elementPosition =
+        aboutRef.current.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: "smooth",
+      });
     }
   };
+
   const scrollToContactUs = () => {
     if (contactUsRef.current) {
-      contactUsRef.current.scrollIntoView({ behavior: "smooth" });
+      const offset = 85; 
+      const elementPosition =
+        contactUsRef.current.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: "smooth",
+      });
     }
   };
   return (
     <>
       <div
-        className={` relative w-full flex bg-[url("/images/bg-img2.jpg")] bg-fixed  bg-cover flex-col h-auto `}
+        className={` relative w-full flex bg-primary bg-fixed  bg-cover flex-col h-auto overflow-hidden `}
       >
         {/* Navbar */}
         <Navbar

@@ -10,9 +10,9 @@ const WhatsappButton = () => {
           "_blank"
         );
       }}
-      className=" hover:cursor-pointer hover:bg-green-400 flex justify-center w-12 h-12 rounded-full bg-green-600 transition-all duration-700 m-5 fixed text-white bottom-5 right-10  items-center"
+      className=" hover:cursor-pointer hover:bg-green-400 flex justify-center w-14 h-14 rounded-full bg-green-600 transition-all duration-700 m-5 fixed text-white bottom-5 right-0  items-center"
     >
-      <BsWhatsapp className="text-3xl font-bold" />
+      <BsWhatsapp className="text-4xl font-bold" />
     </div>
   );
 };
