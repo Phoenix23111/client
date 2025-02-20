@@ -4,9 +4,7 @@ import { BsCart2 } from "react-icons/bs";
 import logo from "/images/logo.png";
 import logotxt from "/images/dss.png";
 import { BiUserCircle, BiMenu } from "react-icons/bi";
-import { Navigate, useLocation } from "react-router-dom";
 
-import icons8usercircle from "/images/icons8-user-circle-96.png";
 import { Link } from "react-router-dom";
 
 function Navbar({ onAboutUsClick, onContactUsClick }) {
@@ -72,13 +70,13 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
   return (
     <>
       <nav
-        className={`fixed top-0 z-50 h-20 text-main flex shadow-2xl w-full  transition-all  duration-700 ease-out ${
+        className={`fixed top-0 z-50 h-16 text-main flex shadow-2xl w-full  transition-all   duration-700 ease-out ${
           scrolling && !isScrollingUp
             ? "opacity-0 -translate-y-20 "
             : "opacity-100 bg-secondary"
         }`}
       >
-        <div className="w-full relative flex items-center justify-center gap-10 px-6 md:px-20 md:justify-between h-20">
+        <div className="w-full relative flex items-center justify-center gap-10 px-6 md:px-20 md:justify-between h-16">
           {/* Menu button */}
           <div className="w-auto h-auto lg:hidden" onClick={handleMenuModal}>
             <BiMenu className="size-8" />
@@ -102,22 +100,23 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
           </Link>
           {/* MENU options */}
           <div
+            onClick={() => setMenuOpen(false)}
             className={`transition-all duration-500  ${
               menuOpen
-                ? "absolute h-screen w-full top-20 left-0 bg-blend-overlay bg-black/30 "
+                ? "absolute h-screen w-full top-16 left-0 bg-blend-overlay bg-black/30 "
                 : " hidden lg:flex lg:justify-center lg:items-center text-nowrap"
             } `}
           >
             <div
               className={` font-bold ${
                 menuOpen
-                  ? " h-full p-4 text-left items-center flex flex-col w-1/3  divide-y-2  divide-primary space-y-4  bg-secondary  "
+                  ? " w-full p-4 text-left items-start flex flex-col border-t-2 border-primary   divide-y-2  divide-primary space-y-4  bg-secondary  "
                   : "hidden lg:flex lg:justify-center lg:items-center gap-20 w-full  "
               } `}
             >
               {/* About us */}
               <div
-                className=" w-full  lg:hover:cursor-pointer"
+                className="  lg:hover:cursor-pointer"
                 onClick={() => {
                   onAboutUsClick();
                   setMenuOpen(false);
@@ -193,7 +192,7 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
             ref={modalRef}
             aria-label="Account Modal"
             aria-modal="true"
-            className={`absolute top-24 right-24 w-60 h-36  rounded-lg rounded-tr-none p-2 bg-secondary transition-all duration-500 ${
+            className={`absolute top-20 right-0 md:top-20 md:right-24 w-60 h-36  rounded-lg rounded-tr-none p-2 bg-secondary transition-all duration-500 ${
               accountSectionOpen ? "opacity-100" : "opacity-0 hidden"
             } `}
           >
@@ -206,6 +205,7 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
             <div className="flex gap-2  p-1">
               <Link
                 to={"/auth"}
+                state={{ authState: "login" }}
                 className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
               >
                 Login
@@ -213,6 +213,7 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
 
               <Link
                 to={"/auth"}
+                state={{ authState: "signup" }}
                 className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
               >
                 SignUp

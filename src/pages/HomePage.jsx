@@ -30,7 +30,7 @@ function HomePage() {
 
   const scrollToContactUs = () => {
     if (contactUsRef.current) {
-      const offset = 85; 
+      const offset = 85;
       const elementPosition =
         contactUsRef.current.getBoundingClientRect().top + window.scrollY;
 

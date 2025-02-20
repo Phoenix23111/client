@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
-const FormArea = () => {
-  const [toggleState, setToggleState] = useState("login");
+const FormArea = ({state}) => {
+  const [toggleState, setToggleState] = useState(state);
 
   const handleToggleState = (state) => {
     setToggleState(state);

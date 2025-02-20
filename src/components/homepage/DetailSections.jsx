@@ -77,10 +77,10 @@ function DetailSections({ aboutref }) {
         >
           {/* image */}
           <div
-            className={`flex  mx-h-full transform  backdrop-blur-sm transition-all duration-[2000ms] ease-in-out  flex-1  ${
+            className={`flex  mx-h-full transform  backdrop-blur-sm transition-all duration-[2000ms] ease-in-out  flex-1 ${
               visible1
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-24"
+                ? "md:opacity-100 md:translate-x-0"
+                : "md:opacity-0 md:-translate-x-24"
             }`}
           >
             <img
