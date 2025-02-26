@@ -13,11 +13,11 @@ const ProjectsPanel = ({ galleryData }) => {
   };
 
   return (
-    <div className="mt-16 bg-[url('/client/images/gallerybg1.png')]  md:bg-[url('/client/images/gallerybg.png')] bg-fixed bg-no-repeat bg-cover p-2 h-full md:p-8 flex flex-col flex-wrap gap-14 md:px-10">
-      {data.map((section) => (
+    <div className="mt-16 bg-white p-2 h-full md:p-8 flex flex-col flex-wrap gap-14 md:px-10">
+      {data.map((section, index) => (
         <div
           key={section.id}
-          className=" flex flex-col md:flex md:flex-row bg-secondary/40 shadow-2xl backdrop-blur-sm  backdrop-brightness-125 p-2 md:p-8 rounded-lg  gap-8 h-full md:h-[90vh]"
+          className=" flex flex-col md:flex md:flex-row bg-secondary shadow-2xl backdrop-blur-sm  backdrop-brightness-125 p-2 md:p-8 rounded-lg  gap-8 h-full md:h-[90vh]"
         >
           {/* Image Mapping */}
           <div className="flex flex-col flex-1">

@@ -4,10 +4,11 @@ import { BsCart2 } from "react-icons/bs";
 import logo from "/images/logo.png";
 import logotxt from "/images/dss.png";
 import { BiUserCircle, BiMenu } from "react-icons/bi";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
-function Navbar({ onAboutUsClick, onContactUsClick }) {
+function Navbar({ onAboutUsClick, onContactUsClick, navbarlinks }) {
   const [count, setCount] = useState(0);
   const [scrolling, setScrolling] = useState(false);
   const lastScrollY = useRef(0);
@@ -15,6 +16,8 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const buttonRef = useRef(null);
   const [accountSectionOpen, setAccountSectionOpen] = useState(false);
+  const location = useLocation();
+  const Navigate = useNavigate();
 
   const handleMenuModal = () => {
     if (menuOpen === true) {
@@ -70,13 +73,13 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
   return (
     <>
       <nav
-        className={`fixed top-0 z-50 h-16 text-main flex shadow-2xl w-full  transition-all   duration-700 ease-out ${
+        className={`fixed top-0 z-40 h-16 text-main flex shadow-2xl w-full  transition-all   duration-700 ease-out ${
           scrolling && !isScrollingUp
             ? "opacity-0 -translate-y-20 "
             : "opacity-100 bg-secondary"
         }`}
       >
-        <div className="w-full relative flex items-center justify-center gap-10 px-6 md:px-20 md:justify-between h-16">
+        <div className="w-full relative flex items-center justify-center gap-10 px-2 md:px-20 md:justify-between h-16">
           {/* Menu button */}
           <div className="w-auto h-auto lg:hidden" onClick={handleMenuModal}>
             <BiMenu className="size-8" />
@@ -108,25 +111,33 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
             } `}
           >
             <div
-              className={` font-bold ${
+              className={` font-bold  ${
                 menuOpen
                   ? " w-full p-4 text-left items-start flex flex-col border-t-2 border-primary   divide-y-2  divide-primary space-y-4  bg-secondary  "
                   : "hidden lg:flex lg:justify-center lg:items-center gap-20 w-full  "
-              } `}
+              }  `}
             >
               {/* About us */}
-              <div
-                className="  lg:hover:cursor-pointer"
-                onClick={() => {
-                  onAboutUsClick();
-                  setMenuOpen(false);
-                }}
-              >
-                About Us
-              </div>
+              {location.pathname === "/gallery" ? null : (
+                <div
+                  className={`  lg:hover:cursor-pointer `}
+                  onClick={() => {
+                    onAboutUsClick();
+                    setMenuOpen(false);
+                  }}
+                >
+                  About Us
+                </div>
+              )}
+
               {/* Gallery */}
               <Link
                 to={"/gallery"}
+                onClick={() => {
+                  if (location.pathname === "/gallery") {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
                 className=" w-full  lg:hover:cursor-pointer"
               >
                 Gallery
@@ -151,16 +162,16 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
             </div>
           </div>
 
-          <div className="relative flex gap-3 items-center">
+          <div className="relative flex gap-2 md:gap-3 items-center">
             <div>
-              <BiSearchAlt size={25} />
+              <BiSearchAlt className="size-5 md:size-7" />
             </div>
             <div className="relative ">
               <Link to={"/products/cart"}>
-                <div className="absolute -top-2 -right-2 bg-main  text-white rounded-full font-bold w-5 h-5 text-xs flex items-center justify-center">
+                <div className="absolute -top-2 -right-2 bg-main  text-white rounded-full font-bold w-4 h-4 md:w-5 md:h-5 text-xs flex items-center justify-center">
                   {count}
                 </div>
-                <BsCart2 size={25} />
+                <BsCart2 className="size-5 md:size-7" />
               </Link>
             </div>
             <div
@@ -168,15 +179,15 @@ function Navbar({ onAboutUsClick, onContactUsClick }) {
               onClick={() => {
                 setAccountSectionOpen(!accountSectionOpen);
               }}
-              className="hover:cursor-pointer  ml-5 h-full w-full flex items-center gap-2 "
+              className="hover:cursor-pointer  h-full w-full flex items-center gap-2 "
             >
-              <button className=" rounded-full w-12 text-9xl p-0 bg-secondary h-12 flex items-center overflow-hidden object-cover ">
+              <button className=" rounded-full h-10 w-10 md:w-12 text-9xl bg-secondary md:h-12 flex items-center overflow-hidden object-contain ">
                 {/* <img
                 className="w-full h-full object-cover bg-white"
                 src={icons8usercircle}
                 alt=""
               /> */}
-                <BiUserCircle className="" />
+                <BiUserCircle className="size-10 md:size-12" />
               </button>
 
               {/* <div>

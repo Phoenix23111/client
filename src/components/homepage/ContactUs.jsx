@@ -62,36 +62,38 @@ function ContactUs({ aboutcontactus }) {
         <form
           onSubmit={handleSubmit}
           action="post"
-          className="text-white flex flex-wrap gap-10 columns-2 w-full h-full p-10 rounded-xl bg-transparent backdrop-blur-md backdrop-brightness-110  shadow-2xl"
+          className="text-white flex flex-wrap gap-4 md:gap-8 w-full h-full p-5 md:p-10 rounded-xl bg-transparent backdrop-blur-md backdrop-brightness-110  shadow-2xl"
         >
-          <div className="flex flex-1 gap-2 flex-col">
-            <label htmlFor="name">Name:</label>
-            <input
-              className="w-full h-10 rounded-md p-1 border-none bg-secondary text-black outline-primary"
-              id="name"
-              type="text"
-              name="name"
-              value={data.name}
-              onChange={handleOnChange}
-              required={true}
-            />
-          </div>
-          <div className="flex flex-1 gap-2 flex-col">
-            <label htmlFor="email">Email:</label>
+          <div className="flex flex-col w-full gap-4 md:gap-8 md:flex-row ">
+            <div className="flex gap-2 flex-col  w-full ">
+              <label htmlFor="name">Name:</label>
+              <input
+                className="w-full  md:h-9 rounded-md p-1 border-none bg-secondary text-black outline-primary"
+                id="name"
+                type="text"
+                name="name"
+                value={data.name}
+                onChange={handleOnChange}
+                required={true}
+              />
+            </div>
+            <div className="flex  gap-2 flex-col  w-full ">
+              <label htmlFor="email">Email:</label>
 
-            <input
-              className="w-full h-10 rounded-md p-1 border-none  bg-secondary text-black outline-primary"
-              id="email"
-              type="email"
-              name="email"
-              onChange={handleOnChange}
-              required={true}
-            />
+              <input
+                className="w-full md:h-9 rounded-md p-1 border-none  bg-secondary text-black outline-primary"
+                id="email"
+                type="email"
+                name="email"
+                onChange={handleOnChange}
+                required={true}
+              />
+            </div>
           </div>
           <div className="flex w-full gap-2 flex-col">
             <label htmlFor="MSG">Message:</label>
             <textarea
-              className="w-full h-52 rounded-md p-2 border-none  bg-secondary text-black outline-primary"
+              className="w-full h-40 md:h-52 rounded-md p-2 border-none  bg-secondary text-black outline-primary"
               id="MSG"
               type="text"
               required={true}
@@ -112,8 +114,9 @@ function ContactUs({ aboutcontactus }) {
             Contacts
           </h1>
           <h3>
-            0321 58888 32 <br /> 051 5709 438 <br /> www.dsstore.com.pk <br />
-            mhtariqmajeed@gmail.com
+            <p>032 15888 832</p>
+            <p>051 5709 438 </p>
+            <p> mhtariqmajeed@gmail.com</p>
           </h3>
         </div>
         <div className="flex  row-span-1 col-span-2  text-center justify-center items-center text-2xl font-bold mt-3 py-3">

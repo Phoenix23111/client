@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../components/homepage/Navbar";
 import ProjectsPanel from "../components/gallerypage/ProjectsPanel";
+import ContactUs from "../components/homepage/ContactUs";
 
 const GalleryPage = () => {
   const data = [
@@ -52,12 +53,13 @@ const GalleryPage = () => {
       ],
     },
   ];
+  const NavbarLinks = ["Gallery","Products","Contact Us"]
 
   const aboutRef = useRef(null);
   const contactUsRef = useRef(null);
   const location = useLocation();
   const Navigate = useNavigate();
-  console.log(location !== "/");
+  
 
   const scrollToAbout = () => {
     if (location.pathname !== "/") {
@@ -94,9 +96,11 @@ const GalleryPage = () => {
       <Navbar
         onAboutUsClick={scrollToAbout}
         onContactUsClick={scrollToContactUs}
+        navbarlinks={NavbarLinks}
       />
 
       <ProjectsPanel galleryData={data} />
+      <ContactUs aboutcontactus={contactUsRef} />
     </>
   );
 };

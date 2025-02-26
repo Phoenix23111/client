@@ -32,14 +32,16 @@ const ImageSlider = ({ section, imageId }) => {
           transform: `translateX(-${current * 100}%)`,
         }}
       >
-        {section.images.map((image) => (
-          <img
-            key={image.imageid}
-            src={image.src}
-            alt={`Image ${image.id}`}
-            className="w-full  object-contain flex justify-center items-center   bg-primary  flex-shrink-0 "
-          />
-        ))}
+        {section.images.map((image, index) => {
+          return (
+            <img
+              key={image.imageid || index}
+              src={image.src}
+              alt={`Image ${image.id}`}
+              className="w-full  object-contain flex justify-center items-center   bg-primary  flex-shrink-0 "
+            />
+          );
+        })}
       </div>
 
       {/* Navigation Buttons */}
@@ -52,11 +54,11 @@ const ImageSlider = ({ section, imageId }) => {
         </button>
       </div>
       <div className="absolute bottom-2 sm:bottom-4 py-2 flex justify-center gap-2 sm:gap-3 w-full">
-        {section.images.map((image) => {
+        {section.images.map((image, index) => {
           return (
             <div
               onClick={() => setCurrent(image.imageid - 1)}
-              key={"circle" + image.imageid - 1}
+              key={` ${image.imageid - 1 || index} `}
               className={`cursor-pointer lg:w-7 lg:h-1 sm:w-4 sm:h-1 ${
                 image.imageid - 1 === current
                   ? "bg-main"
