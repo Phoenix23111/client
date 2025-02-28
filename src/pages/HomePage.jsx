@@ -10,6 +10,7 @@ import bg_img from "/images/bg-img.png";
 import WhatsappButton from "../components/homepage/WhatsappButton.jsx";
 import ArrowToTop from "../components/homepage/ArrowToTop.jsx";
 import { useLocation } from "react-router-dom";
+import AddToCartModal from "../components/utils/AddToCartModal.jsx";
 
 function HomePage() {
   const aboutRef = useRef(null);
@@ -40,6 +41,20 @@ function HomePage() {
       });
     }
   };
+  useEffect(() => {
+    window.onload = () => {
+      window.scrollTo(0, 0);
+    };
+  }, []);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const item = { name: "Awesome Product" };
+
+  const addToCartLogic = () => {
+    // Add logic to update the cart state/context
+
+    setIsModalOpen(true);
+    setTimeout(() => setIsModalOpen(false), 10000); // Auto close after 10s
+  };
   return (
     <>
       <div
@@ -57,13 +72,20 @@ function HomePage() {
         {/* Details Section */}
         <DetailSections aboutref={aboutRef} />
         {/* Products Section */}
-        <FeaturedProducts />
+        <FeaturedProducts addToCartLogic={addToCartLogic} />
         {/* contact us section */}
         <ContactUs aboutcontactus={contactUsRef} />
         {/* Arrow to Top Button */}
         <ArrowToTop />
         {/* Whatsapp BUtton */}
         <WhatsappButton />
+        <div className="flex justify-center items-center">
+          <AddToCartModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            item={item}
+          />
+        </div>
       </div>
     </>
   );

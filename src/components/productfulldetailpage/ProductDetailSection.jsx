@@ -6,8 +6,10 @@ import {
   BsStar,
   BsStarFill,
 } from "react-icons/bs";
+import { useCart } from "../../contexts/cart/CartContext";
 
-const ProductDetailSection = ({ product }) => {
+const ProductDetailSection = ({ product, addToCartLogic }) => {
+  const { addToCart } = useCart();
   const [index, setIndex] = useState(0);
   const carouselRef = useRef(null);
   const [discount, setDiscount] = useState(10);
@@ -197,7 +199,15 @@ const ProductDetailSection = ({ product }) => {
             </div>
             {/* Add to cart */}
             <div className="flex flex-1 w-full justify-around">
-              <button className="rounded-lg active:bg-teal-800 active:translate-y-1 active:transition-transform active:duration-300 active:ease-out font-semibold text-lg bg-main h-12 w-full text-white">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  // Prevents the click from bubbling up to the card
+                  addToCart(product);
+                  addToCartLogic();
+                }}
+                className="rounded-lg active:bg-teal-800 active:translate-y-1 active:transition-transform active:duration-300 active:ease-out font-semibold text-lg bg-main h-12 w-full text-white"
+              >
                 Add to Cart - {product.price.unit}{" "}
                 {discount ? discountedValue : product.price.value}
               </button>

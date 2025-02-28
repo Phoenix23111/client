@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import ProductsCard from "../productspage/ProductsCard";
 
-function FeaturedProducts() {
+function FeaturedProducts({ addToCartLogic }) {
   const navigate = useNavigate();
   const productsCategoriesDataForCards = [
     {
@@ -25,6 +25,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -43,6 +44,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -61,6 +63,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -79,6 +82,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -97,6 +101,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -115,6 +120,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -133,6 +139,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "/client/images/bg-img.png", main: true },
         { I_id: 1, src: "", main: false },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -151,6 +158,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -169,6 +177,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -187,6 +196,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -205,6 +215,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -223,6 +234,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -241,6 +253,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -259,6 +272,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -277,6 +291,7 @@ function FeaturedProducts() {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: false },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -361,7 +376,10 @@ function FeaturedProducts() {
                   }
                 }}
               >
-                <ProductsCard data={FeaturedProducts[index]} />
+                <ProductsCard
+                  data={FeaturedProducts[index]}
+                  addToCartModal={addToCartLogic}
+                />
               </motion.div>
             </AnimatePresence>
           </div>

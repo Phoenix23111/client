@@ -7,6 +7,7 @@ import { BiUserCircle, BiMenu } from "react-icons/bi";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { Link } from "react-router-dom";
+import { useCart } from "../../contexts/cart/CartContext";
 
 function Navbar({ onAboutUsClick, onContactUsClick, navbarlinks }) {
   const [count, setCount] = useState(0);
@@ -18,6 +19,7 @@ function Navbar({ onAboutUsClick, onContactUsClick, navbarlinks }) {
   const [accountSectionOpen, setAccountSectionOpen] = useState(false);
   const location = useLocation();
   const Navigate = useNavigate();
+  const { totalProducts } = useCart();
 
   const handleMenuModal = () => {
     if (menuOpen === true) {
@@ -169,7 +171,7 @@ function Navbar({ onAboutUsClick, onContactUsClick, navbarlinks }) {
             <div className="relative ">
               <Link to={"/products/cart"}>
                 <div className="absolute -top-2 -right-2 bg-main  text-white rounded-full font-bold w-4 h-4 md:w-5 md:h-5 text-xs flex items-center justify-center">
-                  {count}
+                  {totalProducts}
                 </div>
                 <BsCart2 className="size-5 md:size-7" />
               </Link>

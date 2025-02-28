@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import LoaderContext from "./LoaderContext";
 const LoaderProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);

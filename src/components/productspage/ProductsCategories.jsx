@@ -5,7 +5,7 @@ import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import ProductCategorySlider from "./ProductCategorySlider";
 
-const ProductsCategories = () => {
+const ProductsCategories = ({ addToCart }) => {
   const productsCategoriesData = [
     "Featured Products",
     "Decorative Glass",
@@ -36,6 +36,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -54,6 +55,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -72,6 +74,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -90,6 +93,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -108,6 +112,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -126,6 +131,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -144,6 +150,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "/client/images/bg-img.png", main: true },
         { I_id: 1, src: "", main: false },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -162,6 +169,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -180,6 +188,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -198,6 +207,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -216,6 +226,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -234,6 +245,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -252,6 +264,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -270,6 +283,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "", main: "" },
         { I_id: 1, src: "", main: "" },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -288,6 +302,7 @@ const ProductsCategories = () => {
         { I_id: 0, src: "/client/images/image1.jpg", main: true },
         { I_id: 1, src: "", main: false },
       ],
+      quantity: 1,
       stock: "",
       weight: "128",
       dimensions: { length: "", width: "", height: "" },
@@ -299,7 +314,6 @@ const ProductsCategories = () => {
   // Store Refs & States for Each Category
   const categoryRefs = useRef({});
   const [scrollPositions, setScrollPositions] = useState({});
-  const [maxScrollValues, setMaxScrollValues] = useState({});
 
   // Only update state if values actually change to prevent unnecessary re-renders
 
@@ -403,7 +417,10 @@ const ProductsCategories = () => {
                       }
                     }}
                   >
-                    <ProductsCard data={FeaturedProducts[index]} />
+                    <ProductsCard
+                      data={FeaturedProducts[index]}
+                      addToCartModal={addToCart}
+                    />
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -480,7 +497,7 @@ const ProductsCategories = () => {
                         key={data.P_id}
                         className="w-64 md:w-72 flex-shrink-0"
                       >
-                        <ProductsCard data={data} />
+                        <ProductsCard data={data} addToCartModal={addToCart} />
                       </motion.div>
                     ))}
                   </motion.div>

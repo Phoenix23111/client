@@ -15,6 +15,7 @@ import LoaderProvider from "./contexts/loader/LoaderProvider";
 import Loader from "./components/utils/Loader";
 import ProductFullDetailPage from "./pages/ProductFullDetailPage";
 import ScrollToTop from "./components/utils/ScrollToTop";
+import CartProvider from "./contexts/cart/CartProvider";
 
 const queryClient = new QueryClient();
 function App() {
@@ -26,19 +27,21 @@ function App() {
             <Router basename="client/">
               <Loader />
               <ScrollToTop />
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/auth" element={<AuthPage />} />
+              <CartProvider>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/auth" element={<AuthPage />} />
 
-                <Route path="/products" element={<ProductsPage />} />
-                <Route path="/products/cart" element={<CartPage />} />
-                <Route
-                  path="/products/product-details/:category/:id"
-                  element={<ProductFullDetailPage />}
-                />
+                  <Route path="/products" element={<ProductsPage />} />
+                  <Route path="/products/cart" element={<CartPage />} />
+                  <Route
+                    path="/products/product-details/:category/:id"
+                    element={<ProductFullDetailPage />}
+                  />
 
-                <Route path="/gallery" element={<GalleryPage />} />
-              </Routes>
+                  <Route path="/gallery" element={<GalleryPage />} />
+                </Routes>
+              </CartProvider>
             </Router>
           </AuthProvider>
         </LoaderProvider>

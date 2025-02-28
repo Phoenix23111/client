@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductsNavbar from "../components/productspage/ProductsNavbar";
 import ContactUs from "../components/homepage/ContactUs";
 import ProductDetailSection from "../components/productfulldetailpage/ProductDetailSection";
+import AddToCartModal from "../components/utils/AddToCartModal";
 
 const ProductFullDetailPage = () => {
   const { category, id } = useParams();
@@ -304,13 +305,38 @@ const ProductFullDetailPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    window.onload = () => {
+      window.scrollTo(0, 0);
+    };
+  }, []);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const item = { name: "Awesome Product" };
+
+  const addToCartLogic = () => {
+    // Add logic to update the cart state/context
+
+    setIsModalOpen(true);
+    setTimeout(() => setIsModalOpen(false), 10000); // Auto close after 10s
+  };
+
   return (
     <>
       <ProductsNavbar onContactUsClick={scrollToContactUs} />
       <div className=" h-full mt-16 p-5 md:p-10">
-        <ProductDetailSection product={product} />
+        <ProductDetailSection
+          product={product}
+          addToCartLogic={addToCartLogic}
+        />
       </div>
       <ContactUs aboutcontactus={contactUsRef} />
+      <div className="flex justify-center items-center">
+        <AddToCartModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          item={item}
+        />
+      </div>
     </>
   );
 };

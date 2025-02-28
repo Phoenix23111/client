@@ -12,6 +12,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import { useCart } from "../../contexts/cart/CartContext";
 
 function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
   const location = useLocation();
@@ -19,8 +20,7 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
   const pathPattern = "/products/product-details/:category/:id";
   const currentURL = location.pathname;
   const match = matchPath(pathPattern, currentURL);
-
-  const [count, setCount] = useState(0);
+  const { totalProducts } = useCart();
   const [scrolling, setScrolling] = useState(false);
   const lastScrollY = useRef(0);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
@@ -126,7 +126,7 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
                 <div className="relative ">
                   <Link to={"/products/cart"}>
                     <div className="absolute -top-2 -right-2 bg-main  text-white rounded-full font-bold w-4 h-4 md:w-5 md:h-5  text-xs flex items-center justify-center">
-                      {count}
+                      {totalProducts}
                     </div>
                     <BsCart2 className="size-5 md:size-7" />
                   </Link>
@@ -193,7 +193,7 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
             <>
               {/* go back button */}
               <button
-                className="flex   items-center   rounded-lg text-xs md:text-lg w-30 border h-10 "
+                className="flex   items-center   rounded-lg text-xs md:text-lg w-30  h-10 "
                 onClick={() => {
                   navigate(-1);
                 }}
@@ -225,7 +225,7 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
                 <div className="relative ">
                   <Link to={"/products/cart"}>
                     <div className="absolute -top-2 -right-2 bg-main  text-white rounded-full font-bold w-4 h-4 md:w-5 md:h-5  text-xs flex items-center justify-center">
-                      {count}
+                      {totalProducts}
                     </div>
                     <BsCart2 className="size-5 md:size-7" />
                   </Link>
@@ -367,7 +367,7 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
                 <div className="relative ">
                   <Link to={"/products/cart"}>
                     <div className="absolute -top-2 -right-2 bg-main  text-white rounded-full font-bold w-4 h-4 md:w-5 md:h-5  text-xs flex items-center justify-center">
-                      {count}
+                      {totalProducts}
                     </div>
                     <BsCart2 className="size-5 md:size-7" />
                   </Link>
