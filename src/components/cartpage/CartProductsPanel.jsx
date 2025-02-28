@@ -1,17 +1,6 @@
 import React, { useState } from "react";
 import { useCart } from "../../contexts/cart/CartContext";
-import {
-  BsFileMinus,
-  BsFillTrash3Fill,
-  BsFillTrashFill,
-  BsNodeMinus,
-  BsPlus,
-  BsTrash,
-  BsTrash2,
-  BsTrash3,
-  BsTrash3Fill,
-  BsTrashFill,
-} from "react-icons/bs";
+import { BsFillTrashFill, BsPlus } from "react-icons/bs";
 
 const CartProductsPanel = () => {
   const [color, setColor] = useState("");
@@ -28,11 +17,11 @@ const CartProductsPanel = () => {
   };
 
   return (
-    <div className="flex w-full h-full  lg:w-[70%] ">
-      <div className=" w-full overflow-x-auto  shadow-md rounded-lg">
+    <div className="flex w-full h-full lg:w-[70%] ">
+      <div className="w-full shadow-md rounded-lg h-full">
         {totalProducts ? (
-          <table className="w-full h-full text-sm text-left rtl:text-right text-black">
-            <thead className=" text-center text-sm text-white uppercase bg-main w-full ">
+          <table className="w-full h-full rounded-lg  text-sm text-left rtl:text-right text-black ">
+            <thead className=" text-center text-sm text-white uppercase bg-main w-full rounded-lg ">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   Product name
@@ -52,20 +41,20 @@ const CartProductsPanel = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="w-full max-h-40 ">
               {cartItems.map((data, index) => {
                 return totalProducts ? (
                   <tr
                     key={index}
                     onClick={onClickPanel}
-                    className={`bg-primary border-b text-center  border-main h-40 w-full `}
+                    className={`bg-primary border-b text-center  border-main min-h-40 w-full `}
                   >
                     <th
                       scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                      className=" border px-6 py-4 font-medium  whitespace-nowrap h-full"
                     >
-                      <div className="flex gap-2">
-                        <div className="bg-secondary w-20 h-20">
+                      <div className="flex gap-2 items-center h-full border">
+                        <div className="bg-secondary w-20 h-20 flex items-center justify-center ">
                           {cartItems !== 0 &&
                             data?.images?.map(
                               (img, index) =>
@@ -82,33 +71,34 @@ const CartProductsPanel = () => {
                       </div>
                     </th>
 
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 h-full flex items-center justify-center">
                       {data.price.unit} {data.price.value}
                     </td>
-                    <td className=" flex justify-center items-center text-center  px-6 py-4 h-full">
-                      <div className=" flex justify-center items-center  gap-4  border-2 border-main w-24 h-8  ">
+                    <td className="px-6 py-4 h-full items-center justify-center">
+                      <div className="flex justify-center items-center gap-4 border-2 border-main w-24 h-12">
                         <button
-                          className=" w-8 flex justify-center  border-r-2 border-main items-center text-xl h-8 hover:bg-main hover:text-white"
+                          className="w-8 flex justify-center items-center text-xl h-12 bg-main text-white"
                           onClick={() => increaseQuantity(data.P_id)}
                         >
                           <BsPlus />
                         </button>
                         {data.quantity}
                         <button
-                          className=" w-8 flex justify-center items-center border-l-2  border-l-main text-xl h-8 hover:bg-main hover:text-white"
+                          className="w-8 flex justify-center items-center text-xl h-12 bg-main text-white"
                           onClick={() => decreaseQuantity(data.P_id)}
                         >
                           -
                         </button>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+
+                    <td className="px-6 py-4 h-full flex items-center justify-center">
                       {data.price.unit} {data.price.value * data.quantity}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 h-full  items-center justify-center">
                       <button
                         onClick={() => removeFromCart(data.P_id)}
-                        className="font-bold text-red-500 hover:text-red-900 "
+                        className="font-bold text-red-500 hover:text-red-900"
                       >
                         <BsFillTrashFill size={24} />
                       </button>
