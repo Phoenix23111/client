@@ -1,5 +1,3 @@
 {
-    "redirects": [
-      { "source": "/", "destination": "/client/", "statusCode": 308 }
-    ]
-  }
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
