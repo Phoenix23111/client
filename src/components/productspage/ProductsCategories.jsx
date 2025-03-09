@@ -328,20 +328,27 @@ const ProductsCategories = ({ addToCart }) => {
 
   const scrollLeft = (category) => {
     if (categoryRefs.current[category]) {
-      categoryRefs.current[category].scrollLeft -= 1000;
+      categoryRefs.current[category].scrollBy({
+        left: -800, // Adjust for smooth scrolling
+        behavior: "smooth",
+      });
       setTimeout(() => handleScroll(category), 200);
     }
   };
 
   const scrollRight = (category) => {
     if (categoryRefs.current[category]) {
-      categoryRefs.current[category].scrollLeft += 1000;
+      categoryRefs.current[category].scrollBy({
+        left: 800, // Adjust for smooth scrolling
+        behavior: "smooth",
+      });
       setTimeout(() => handleScroll(category), 200);
     }
   };
   const FeaturedProducts = productsCategoriesDataForCards.filter(
     (data) => data.Featured === true
   );
+  const featuredSection = true;
   const [index, setIndex] = useState(0);
 
   const [direction, setDirection] = useState(1);
@@ -407,6 +414,10 @@ const ProductsCategories = ({ addToCart }) => {
                         ease: "easeInOut",
                       },
                     }}
+                    whileHover={{
+                      scale: 1, // Stop breathing effect
+                      transition: { duration: 0.2 }, // Instantly stop scaling
+                    }}
                     drag="x"
                     dragConstraints={{ left: 0, right: 0 }}
                     onDragEnd={(event, info) => {
@@ -420,6 +431,7 @@ const ProductsCategories = ({ addToCart }) => {
                     <ProductsCard
                       data={FeaturedProducts[index]}
                       addToCartModal={addToCart}
+                      featuredSection={featuredSection}
                     />
                   </motion.div>
                 </AnimatePresence>
@@ -465,53 +477,50 @@ const ProductsCategories = ({ addToCart }) => {
           if (categoryProducts.length === 0) return null;
 
           return (
-            <>
-              <div
-                key={index}
-                ref={(el) => (categoryRefs.current[category] = el)}
-                className="relative flex flex-col w-full py-5 px-5 bg-secondary/20 shadow-2xl backdrop-blur-md rounded-xl"
-              >
-                <h1 className="flex flex-col text-3xl font-extrabold  text-main mb-4 px-5 md:px-10">
-                  {category}
-                  <span className="w-full border border-main"></span>
-                </h1>
+            <div
+              key={index}
+              className="relative flex flex-col w-full py-5 px-5 bg-secondary/20 shadow-2xl backdrop-blur-md rounded-xl"
+            >
+              <h1 className="flex flex-col text-3xl font-extrabold text-main mb-4 px-5 md:px-10">
+                {category}
+                <span className="w-full border border-main"></span>
+              </h1>
 
-                <div className="relative w-full">
-                  {/* Left Button */}
-                  <button
-                    onClick={() => scrollLeft(category, "left")}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/50 p-2 rounded-full shadow-md hover:bg-white/70"
-                  >
-                    <BiChevronLeft size={24} />
-                  </button>
+              <div className="relative w-full">
+                {/* Left Button */}
+                <button
+                  onClick={() => scrollLeft(category)}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/50 p-2 rounded-full shadow-md hover:bg-white/70"
+                >
+                  <BiChevronLeft size={24} />
+                </button>
 
-                  {/* Carousel Wrapper */}
-                  <motion.div
-                    ref={(el) => (categoryRefs.current[category] = el)}
-                    className="flex h-[65vh]  items-center gap-10 md:gap-16 overflow-x-auto scroll-smooth overflow-hidden px-5 pe-14 scrollbar-hide"
-                    drag="x"
-                    dragConstraints={{ left: -1000, right: 0 }}
-                  >
-                    {categoryProducts.map((data) => (
-                      <motion.div
-                        key={data.P_id}
-                        className="w-64 md:w-72 flex-shrink-0"
-                      >
-                        <ProductsCard data={data} addToCartModal={addToCart} />
-                      </motion.div>
-                    ))}
-                  </motion.div>
+                {/* Carousel Wrapper */}
+                <motion.div
+                  ref={(el) => {
+                    if (el) categoryRefs.current[category] = el;
+                  }}
+                  className="flex h-[65vh] items-center gap-10 md:gap-16 overflow-x-auto scroll-smooth px-5 pe-14 scrollbar-hide"
+                >
+                  {categoryProducts.map((data) => (
+                    <motion.div
+                      key={data.P_id}
+                      className="w-64 md:w-72 flex-shrink-0"
+                    >
+                      <ProductsCard data={data} addToCartModal={addToCart} />
+                    </motion.div>
+                  ))}
+                </motion.div>
 
-                  {/* Right Button */}
-                  <button
-                    onClick={() => scrollRight(category, "right")}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/50  p-2 rounded-full shadow-md hover:bg-white/70"
-                  >
-                    <BiChevronRight size={24} />
-                  </button>
-                </div>
+                {/* Right Button */}
+                <button
+                  onClick={() => scrollRight(category)}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/50 p-2 rounded-full shadow-md hover:bg-white/70"
+                >
+                  <BiChevronRight size={24} />
+                </button>
               </div>
-            </>
+            </div>
           );
         })}
       </div>

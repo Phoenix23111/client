@@ -13,8 +13,10 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useCart } from "../../contexts/cart/CartContext";
+import { useAuth } from "../../contexts/auth/AuthContext";
 
 function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
+  const { user, logoutMutation } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const pathPattern = "/products/product-details/:category/:id";
@@ -88,7 +90,7 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
             : "opacity-100 bg-secondary"
         }`}
       >
-        <div className="w-full relative flex items-center justify-center gap-10 px-2 md:px-20 md:justify-between h-16">
+        <div className="w-full relative flex items-center justify-between  px-2 md:px-10 md:justify-between h-16">
           {/* navbar for Product detail */}
           {match ? (
             <>
@@ -136,21 +138,37 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
                   onClick={() => {
                     setAccountSectionOpen(!accountSectionOpen);
                   }}
-                  className="hover:cursor-pointer h-full w-full flex items-center gap-2 "
+                  className="hover:cursor-pointer  h-full w-full flex items-center gap-2 "
                 >
-                  <button className=" rounded-full h-10 w-10 md:w-12  text-9xl p-0 bg-secondary md:h-12 flex items-center overflow-hidden object-cover ">
-                    {/* <img
-                className="w-full h-full object-cover bg-white"
-                src={icons8usercircle}
-                alt=""
-              /> */}
-                    <BiUserCircle className="size-10 md:size-12" />
-                  </button>
+                  {user ? (
+                    <>
+                      <img
+                        className="w-8 h-8 md:w-12 md:h-12 rounded-full object-cover "
+                        src={user.profilepic}
+                        alt=""
+                      />
+                      <div className="text-sm font-semibold max-sm:hidden text-wrap">
+                        <h4>
+                          Welcome!
+                          <br /> {user.name}
+                        </h4>
+                      </div>
+                    </>
+                  ) : (
+                    <button className=" rounded-full h-10 w-10 md:w-12 text-9xl bg-secondary md:h-12 flex items-center overflow-hidden object-contain ">
+                      {/* <img
+                                className="w-full h-full object-cover bg-white"
+                                src={icons8usercircle}
+                                alt=""
+                              /> */}
+                      <BiUserCircle className="size-10 md:size-12" />
+                    </button>
+                  )}
 
                   {/* <div>
-              <h4>Welcome User!</h4>
-              <p>Sign In</p>
-            </div> */}
+                              <h4>Welcome User!</h4>
+                              <p>Sign In</p>
+                            </div> */}
                 </div>
               </div>
 
@@ -171,21 +189,35 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
                   Login or signup to Purchase our Products.
                 </div>
                 <div className="flex gap-2  p-1">
-                  <Link
-                    to={"/auth"}
-                    state={{ authState: "login" }}
-                    className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
-                  >
-                    Login
-                  </Link>
+                  {user ? (
+                    <button
+                      onClick={() => {
+                        logoutMutation.mutate();
+                        window.location.reload();
+                      }}
+                      className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                    >
+                      logout
+                    </button>
+                  ) : (
+                    <>
+                      <Link
+                        to={"/auth"}
+                        state={{ authState: "login" }}
+                        className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                      >
+                        Login
+                      </Link>
 
-                  <Link
-                    to={"/auth"}
-                    state={{ authState: "signup" }}
-                    className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
-                  >
-                    SignUp
-                  </Link>
+                      <Link
+                        to={"/auth"}
+                        state={{ authState: "signup" }}
+                        className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                      >
+                        SignUp
+                      </Link>
+                    </>
+                  )}
                 </div>
               </div>
             </>
@@ -235,16 +267,32 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
                   onClick={() => {
                     setAccountSectionOpen(!accountSectionOpen);
                   }}
-                  className="hover:cursor-pointer h-full w-full flex items-center gap-2 "
+                  className="hover:cursor-pointer  h-full w-full flex items-center gap-2 "
                 >
-                  <button className=" rounded-full h-10 w-10 md:w-12  text-9xl p-0 bg-secondary md:h-12 flex items-center overflow-hidden object-cover ">
-                    {/* <img
+                  {user ? (
+                    <>
+                      <img
+                        className="w-8 h-8 md:w-12 md:h-12 rounded-full object-cover "
+                        src={user.profilepic}
+                        alt=""
+                      />
+                      <div className="text-sm font-semibold max-sm:hidden text-wrap">
+                        <h4>
+                          Welcome!
+                          <br /> {user.name}
+                        </h4>
+                      </div>
+                    </>
+                  ) : (
+                    <button className=" rounded-full h-10 w-10 md:w-12 text-9xl bg-secondary md:h-12 flex items-center overflow-hidden object-contain ">
+                      {/* <img
                 className="w-full h-full object-cover bg-white"
                 src={icons8usercircle}
                 alt=""
               /> */}
-                    <BiUserCircle className="size-10 md:size-12" />
-                  </button>
+                      <BiUserCircle className="size-10 md:size-12" />
+                    </button>
+                  )}
 
                   {/* <div>
               <h4>Welcome User!</h4>
@@ -270,21 +318,35 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
                   Login or signup to Purchase our Products.
                 </div>
                 <div className="flex gap-2  p-1">
-                  <Link
-                    to={"/auth"}
-                    state={{ authState: "login" }}
-                    className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
-                  >
-                    Login
-                  </Link>
+                  {user ? (
+                    <button
+                      onClick={() => {
+                        logoutMutation.mutate();
+                        window.location.reload();
+                      }}
+                      className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                    >
+                      logout
+                    </button>
+                  ) : (
+                    <>
+                      <Link
+                        to={"/auth"}
+                        state={{ authState: "login" }}
+                        className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                      >
+                        Login
+                      </Link>
 
-                  <Link
-                    to={"/auth"}
-                    state={{ authState: "signup" }}
-                    className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
-                  >
-                    SignUp
-                  </Link>
+                      <Link
+                        to={"/auth"}
+                        state={{ authState: "signup" }}
+                        className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                      >
+                        SignUp
+                      </Link>
+                    </>
+                  )}
                 </div>
               </div>
             </>
@@ -372,21 +434,38 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
                     <BsCart2 className="size-5 md:size-7" />
                   </Link>
                 </div>
+
                 <div
                   ref={buttonRef}
                   onClick={() => {
                     setAccountSectionOpen(!accountSectionOpen);
                   }}
-                  className="hover:cursor-pointer h-full w-full flex items-center gap-2 "
+                  className="hover:cursor-pointer  h-full w-full flex items-center gap-2 "
                 >
-                  <button className=" rounded-full h-10 w-10 md:w-12  text-9xl p-0 bg-secondary md:h-12 flex items-center overflow-hidden object-cover ">
-                    {/* <img
+                  {user ? (
+                    <>
+                      <img
+                        className="w-8 h-8 md:w-12 md:h-12 rounded-full object-cover "
+                        src={user.profilepic}
+                        alt=""
+                      />
+                      <div className="text-sm font-semibold max-sm:hidden text-wrap">
+                        <h4>
+                          Welcome!
+                          <br /> {user.name}
+                        </h4>
+                      </div>
+                    </>
+                  ) : (
+                    <button className=" rounded-full h-10 w-10 md:w-12 text-9xl bg-secondary md:h-12 flex items-center overflow-hidden object-contain ">
+                      {/* <img
                 className="w-full h-full object-cover bg-white"
                 src={icons8usercircle}
                 alt=""
               /> */}
-                    <BiUserCircle className="size-10 md:size-12" />
-                  </button>
+                      <BiUserCircle className="size-10 md:size-12" />
+                    </button>
+                  )}
 
                   {/* <div>
               <h4>Welcome User!</h4>
@@ -412,21 +491,35 @@ function ProductsNavbar({ onAboutUsClick, onContactUsClick }) {
                   Login or signup to Purchase our Products.
                 </div>
                 <div className="flex gap-2  p-1">
-                  <Link
-                    to={"/auth"}
-                    state={{ authState: "login" }}
-                    className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
-                  >
-                    Login
-                  </Link>
+                  {user ? (
+                    <button
+                      onClick={() => {
+                        logoutMutation.mutate();
+                        window.location.reload();
+                      }}
+                      className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                    >
+                      logout
+                    </button>
+                  ) : (
+                    <>
+                      <Link
+                        to={"/auth"}
+                        state={{ authState: "login" }}
+                        className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                      >
+                        Login
+                      </Link>
 
-                  <Link
-                    to={"/auth"}
-                    state={{ authState: "signup" }}
-                    className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
-                  >
-                    SignUp
-                  </Link>
+                      <Link
+                        to={"/auth"}
+                        state={{ authState: "signup" }}
+                        className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                      >
+                        SignUp
+                      </Link>
+                    </>
+                  )}
                 </div>
               </div>
             </>

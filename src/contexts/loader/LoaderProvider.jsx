@@ -7,7 +7,7 @@ const LoaderProvider = ({ children }) => {
 
   useEffect(() => {
     const handleLoad = () => {
-      setTimeout(() => hideLoader(), 2000); // Delay for 2 seconds
+      setTimeout(() => hideLoader(), 1000); // Delay for 1 seconds
     };
 
     if (document.readyState === "complete") {

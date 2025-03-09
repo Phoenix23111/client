@@ -17,13 +17,17 @@ const CartProductsPanel = () => {
   };
 
   return (
-    <div className="flex w-full h-full lg:w-[70%] ">
-      <div className="w-full shadow-md rounded-lg h-full">
+    <div className={` w-full  lg:w-[75%] h-full `}>
+      <div
+        className={`w-full  overflow-hidden shadow-md rounded-lg ${
+          totalProducts ? "" : "h-full"
+        } `}
+      >
         {totalProducts ? (
-          <table className="w-full h-full rounded-lg  text-sm text-left rtl:text-right text-black ">
-            <thead className=" text-center text-sm text-white uppercase bg-main w-full rounded-lg ">
+          <table className="w-full h-full rounded-xl  text-sm md:text-base text-left  text-black ">
+            <thead className=" text-center text-sm text-white uppercase bg-main w-full rounded-xl ">
               <tr>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="w-[50%] px-6 py-3">
                   Product name
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -41,20 +45,20 @@ const CartProductsPanel = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="w-full max-h-40 ">
+            <tbody className="w-full  ">
               {cartItems.map((data, index) => {
                 return totalProducts ? (
                   <tr
                     key={index}
                     onClick={onClickPanel}
-                    className={`bg-primary border-b text-center  border-main min-h-40 w-full `}
+                    className={`bg-primary border-b text-center  border-main h-40 w-full `}
                   >
                     <th
                       scope="row"
-                      className=" border px-6 py-4 font-medium  whitespace-nowrap h-full"
+                      className="flex w-full px-4 py-4 font-medium   h-full"
                     >
-                      <div className="flex gap-2 items-center h-full border">
-                        <div className="bg-secondary w-20 h-20 flex items-center justify-center ">
+                      <div className="flex gap-2 items-center w-full h-full ">
+                        <div className="bg-secondary w-40 h-full flex items-center justify-center ">
                           {cartItems !== 0 &&
                             data?.images?.map(
                               (img, index) =>
@@ -67,35 +71,46 @@ const CartProductsPanel = () => {
                                 )
                             )}
                         </div>
-                        <div>{data.name}</div>
+                        <div className="flex flex-col text-start  h-full gap-3 w-full">
+                          <div className="text-2xl text-main font-bold">
+                            {" "}
+                            {data.name}
+                          </div>
+                          <div className="text-sm text-main/80">
+                            {data.category}
+                          </div>
+                          <div>{data.description}</div>
+                        </div>
                       </div>
                     </th>
 
-                    <td className="px-6 py-4 h-full flex items-center justify-center">
+                    <td className="px-6 py-4">
                       {data.price.unit} {data.price.value}
                     </td>
-                    <td className="px-6 py-4 h-full items-center justify-center">
-                      <div className="flex justify-center items-center gap-4 border-2 border-main w-24 h-12">
-                        <button
-                          className="w-8 flex justify-center items-center text-xl h-12 bg-main text-white"
-                          onClick={() => increaseQuantity(data.P_id)}
-                        >
-                          <BsPlus />
-                        </button>
-                        {data.quantity}
-                        <button
-                          className="w-8 flex justify-center items-center text-xl h-12 bg-main text-white"
-                          onClick={() => decreaseQuantity(data.P_id)}
-                        >
-                          -
-                        </button>
+                    <td className="px-6 py-4 h-full  ">
+                      <div className="flex justify-center ">
+                        <div className="flex  w-24 h-10  justify-center border-2 border-main  items-center gap-4">
+                          <button
+                            className="w-8 flex justify-center items-center text-xl h-10 bg-main text-white active:bg-transparent active:border-r-2 active:border-main active:text-main"
+                            onClick={() => increaseQuantity(data.P_id)}
+                          >
+                            <BsPlus />
+                          </button>
+                          {data.quantity}
+                          <button
+                            className="w-8 flex justify-center items-center text-xl h-10 bg-main text-white active:bg-transparent active:border-l-2 active:border-main active:text-main"
+                            onClick={() => decreaseQuantity(data.P_id)}
+                          >
+                            -
+                          </button>
+                        </div>
                       </div>
                     </td>
 
-                    <td className="px-6 py-4 h-full flex items-center justify-center">
+                    <td className="px-6 py-4 font-bold ">
                       {data.price.unit} {data.price.value * data.quantity}
                     </td>
-                    <td className="px-6 py-4 h-full  items-center justify-center">
+                    <td className="px-6 py-4 ">
                       <button
                         onClick={() => removeFromCart(data.P_id)}
                         className="font-bold text-red-500 hover:text-red-900"

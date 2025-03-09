@@ -1,10 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import ProductCardHome from "../productspage/ProductCardHome";
-import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
-import prod1img from "/images/prod1img.jpg";
-import image2 from "/images/image2.jpg";
-import image3 from "/images/image3.jpg";
-import image1 from "/images/image1.jpg";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
@@ -12,6 +6,7 @@ import ProductsCard from "../productspage/ProductsCard";
 
 function FeaturedProducts({ addToCartLogic }) {
   const navigate = useNavigate();
+  const featuredSection = true;
   const productsCategoriesDataForCards = [
     {
       P_id: 0,
@@ -309,7 +304,7 @@ function FeaturedProducts({ addToCartLogic }) {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 6000);
+    }, 8000);
     return () => clearInterval(interval);
   }, [index]);
 
@@ -323,13 +318,6 @@ function FeaturedProducts({ addToCartLogic }) {
     setIndex(
       (prev) => (prev - 1 + FeaturedProducts.length) % FeaturedProducts.length
     );
-  };
-  const handleDragEnd = (event, info) => {
-    if (info.offset.x < -50) {
-      nextSlide(); // Swipe left → next slide
-    } else if (info.offset.x > 50) {
-      prevSlide(); // Swipe right → previous slide
-    }
   };
 
   return (
@@ -348,13 +336,17 @@ function FeaturedProducts({ addToCartLogic }) {
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={FeaturedProducts[index].P_id}
-                className="absolute w-full h-full flex justify-center items-center"
+                className="absolute  flex justify-center items-center "
                 initial={{ opacity: 0, x: 100, rotateX: -15 }}
                 animate={{
                   opacity: 1,
                   x: 0,
                   rotateX: 0,
                   scale: [1, 1.1, 1], // Breathing effect
+                }}
+                whileHover={{
+                  scale: 1, // Stop breathing effect
+                  transition: { duration: 0.2 }, // Instantly stop scaling
                 }}
                 exit={{ opacity: 0, x: -100, rotateX: 15 }}
                 transition={{
@@ -377,8 +369,10 @@ function FeaturedProducts({ addToCartLogic }) {
                 }}
               >
                 <ProductsCard
+                  whileHover={{ scale: 1 }}
                   data={FeaturedProducts[index]}
                   addToCartModal={addToCartLogic}
+                  featuredSection={featuredSection}
                 />
               </motion.div>
             </AnimatePresence>
@@ -412,6 +406,16 @@ function FeaturedProducts({ addToCartLogic }) {
               />
             ))}
           </div>
+        </div>
+        <div className="flex justify-around p-10 ">
+          <button
+            onClick={() => {
+              navigate("/products");
+            }}
+            className="rounded-lg active:bg-teal-800 active:translate-y-1 active:transition-transform active:duration-300 active:ease-out font-semibold text-lg bg-main h-14 w-72 text-white"
+          >
+            Explore More
+          </button>
         </div>
       </div>
     </>

@@ -23,8 +23,8 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <LoaderProvider>
-          <AuthProvider>
-            <Router basename="client/">
+          <Router basename="client/">
+            <AuthProvider>
               <Loader />
               <ScrollToTop />
               <CartProvider>
@@ -42,8 +42,8 @@ function App() {
                   <Route path="/gallery" element={<GalleryPage />} />
                 </Routes>
               </CartProvider>
-            </Router>
-          </AuthProvider>
+            </AuthProvider>
+          </Router>
         </LoaderProvider>
       </QueryClientProvider>
     </>

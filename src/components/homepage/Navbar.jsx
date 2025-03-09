@@ -8,9 +8,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import { useCart } from "../../contexts/cart/CartContext";
+import { useAuth } from "../../contexts/auth/AuthContext";
 
 function Navbar({ onAboutUsClick, onContactUsClick, navbarlinks }) {
-  const [count, setCount] = useState(0);
+  const { user, logoutMutation } = useAuth();
+
   const [scrolling, setScrolling] = useState(false);
   const lastScrollY = useRef(0);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
@@ -81,35 +83,37 @@ function Navbar({ onAboutUsClick, onContactUsClick, navbarlinks }) {
             : "opacity-100 bg-secondary"
         }`}
       >
-        <div className="w-full relative flex items-center justify-center gap-10 px-2 md:px-20 md:justify-between h-16">
+        <div className="w-full  relative flex items-center justify-between px-2 md:px-10 md:justify-between h-16">
           {/* Menu button */}
           <div className="w-auto h-auto lg:hidden" onClick={handleMenuModal}>
             <BiMenu className="size-8" />
           </div>
           {/* Logo */}
-          <Link
-            to={"/"}
-            className="flex justify-center w-auto h-auto items-center gap-3 "
-          >
-            <img
-              src={logo}
-              alt=" logo"
-              className="w-auto object-cover h-8 md:h-11 "
-            />
+          <div className="h-full flex ">
+            <Link
+              to={"/"}
+              className="flex justify-center w-auto h-auto items-center gap-3 "
+            >
+              <img
+                src={logo}
+                alt=" logo"
+                className="w-auto object-cover h-8 md:h-11 "
+              />
 
-            <img
-              src={logotxt}
-              alt=" logo"
-              className="w-auto object-cover h-10 md:h-14"
-            />
-          </Link>
+              <img
+                src={logotxt}
+                alt=" logo"
+                className="w-auto object-cover h-10 md:h-14"
+              />
+            </Link>
+          </div>
           {/* MENU options */}
           <div
             onClick={() => setMenuOpen(false)}
             className={`transition-all duration-500  ${
               menuOpen
                 ? "absolute h-screen w-full top-16 left-0 bg-blend-overlay bg-black/30 "
-                : " hidden lg:flex lg:justify-center lg:items-center text-nowrap"
+                : " hidden lg:flex lg:justify-center lg:items-center  lg:h-full text-nowrap"
             } `}
           >
             <div
@@ -164,7 +168,7 @@ function Navbar({ onAboutUsClick, onContactUsClick, navbarlinks }) {
             </div>
           </div>
 
-          <div className="relative flex gap-2 md:gap-3 items-center">
+          <div className="relative flex gap-2 md:gap-3  h-full items-center">
             <div>
               <BiSearchAlt className="size-5 md:size-7" />
             </div>
@@ -183,19 +187,25 @@ function Navbar({ onAboutUsClick, onContactUsClick, navbarlinks }) {
               }}
               className="hover:cursor-pointer  h-full w-full flex items-center gap-2 "
             >
-              <button className=" rounded-full h-10 w-10 md:w-12 text-9xl bg-secondary md:h-12 flex items-center overflow-hidden object-contain ">
-                {/* <img
-                className="w-full h-full object-cover bg-white"
-                src={icons8usercircle}
-                alt=""
-              /> */}
-                <BiUserCircle className="size-10 md:size-12" />
-              </button>
-
-              {/* <div>
-              <h4>Welcome User!</h4>
-              <p>Sign In</p>
-            </div> */}
+              {user ? (
+                <>
+                  <img
+                    className="w-8 h-8 md:w-12 md:h-12 rounded-full object-cover "
+                    src={user.profilepic}
+                    alt=""
+                  />
+                  <div className="text-sm font-semibold max-sm:hidden text-wrap">
+                    <h4>
+                      Welcome!
+                      <br /> {user.name}
+                    </h4>
+                  </div>
+                </>
+              ) : (
+                <button className=" rounded-full h-10 w-10 md:w-12 text-9xl bg-secondary md:h-12 flex items-center overflow-hidden object-contain ">
+                  <BiUserCircle className="size-8 md:size-12" />
+                </button>
+              )}
             </div>
           </div>
 
@@ -216,21 +226,35 @@ function Navbar({ onAboutUsClick, onContactUsClick, navbarlinks }) {
               Login or signup to Purchase our Products.
             </div>
             <div className="flex gap-2  p-1">
-              <Link
-                to={"/auth"}
-                state={{ authState: "login" }}
-                className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
-              >
-                Login
-              </Link>
+              {user ? (
+                <button
+                  onClick={() => {
+                    logoutMutation.mutate();
+                    window.location.reload();
+                  }}
+                  className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                >
+                  logout
+                </button>
+              ) : (
+                <>
+                  <Link
+                    to={"/auth"}
+                    state={{ authState: "login" }}
+                    className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                  >
+                    Login
+                  </Link>
 
-              <Link
-                to={"/auth"}
-                state={{ authState: "signup" }}
-                className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
-              >
-                SignUp
-              </Link>
+                  <Link
+                    to={"/auth"}
+                    state={{ authState: "signup" }}
+                    className="w-full text-center text-white p-1 bg-main h-8 rounded-full "
+                  >
+                    SignUp
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

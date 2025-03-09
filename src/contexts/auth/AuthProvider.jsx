@@ -3,8 +3,10 @@ import AuthContext from "./AuthContext";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { auth, signInWithPopup, googleProvider } from "../../config/firebase";
 import api from "../../config/axiosApi";
+import { useNavigate } from "react-router-dom";
 
 const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   // Fetch user session
@@ -15,6 +17,21 @@ const AuthProvider = ({ children }) => {
       return res.data.user;
     },
     retry: false,
+  });
+
+  // Signup Mutation
+  const signupMutation = useMutation({
+    mutationFn: async ({ name, email, password }) => {
+      const res = await api.post("/api/auth/signup", { name, email, password });
+      return res.data.user;
+    },
+    onSuccess: (userData) => {
+      queryClient.setQueryData(["authUser"], userData);
+      navigate(-1); // Navigate back after successful signup
+    },
+    onError: (error) => {
+      console.error("Signup failed:", error.message);
+    },
   });
 
   //simpleLogin Mutation
@@ -43,7 +60,10 @@ const AuthProvider = ({ children }) => {
 
       return res.data.user;
     },
-    onSuccess: (userData) => queryClient.setQueryData(["authUser"], userData),
+    onSuccess: (userData) => {
+      queryClient.setQueryData(["authUser"], userData);
+      navigate(-1);
+    },
   });
 
   // Logout Mutation
@@ -55,7 +75,13 @@ const AuthProvider = ({ children }) => {
   });
   return (
     <AuthContext.Provider
-      value={{ user, googleLoginMutation, logoutMutation, simpleLogin }}
+      value={{
+        user,
+        googleLoginMutation,
+        logoutMutation,
+        simpleLogin,
+        signupMutation,
+      }}
     >
       {children}
     </AuthContext.Provider>
