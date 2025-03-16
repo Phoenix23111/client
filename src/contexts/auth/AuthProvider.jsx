@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AuthContext from "./AuthContext";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { auth, signInWithPopup, googleProvider } from "../../config/firebase";
@@ -7,10 +7,11 @@ import { useNavigate } from "react-router-dom";
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
+
+  // Redirect to login when user logs out
 
   // Fetch user session
-  const { data: user } = useQuery({
+  const { data: user, isLoading } = useQuery({
     queryKey: ["authUser"],
     queryFn: async () => {
       const res = await api.get("/api/auth/me");
@@ -18,6 +19,8 @@ const AuthProvider = ({ children }) => {
     },
     retry: false,
   });
+
+  const queryClient = useQueryClient();
 
   // Signup Mutation
   const signupMutation = useMutation({
@@ -62,21 +65,28 @@ const AuthProvider = ({ children }) => {
     },
     onSuccess: (userData) => {
       queryClient.setQueryData(["authUser"], userData);
-      navigate(-1);
+      if (userData.role === "admin") {
+        navigate("/admin/Dashboard");
+      } else {
+        navigate(-1);
+      }
     },
   });
-
   // Logout Mutation
   const logoutMutation = useMutation({
     mutationFn: async () => {
       await api.post("/api/auth/logout");
     },
-    onSuccess: () => queryClient.setQueryData(["authUser"], null),
+    onSuccess: () => {
+      queryClient.setQueryData(["authUser"], null);
+      
+    },
   });
   return (
     <AuthContext.Provider
       value={{
         user,
+        isLoading,
         googleLoginMutation,
         logoutMutation,
         simpleLogin,

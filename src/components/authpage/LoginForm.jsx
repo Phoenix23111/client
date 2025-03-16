@@ -18,7 +18,11 @@ const LoginForm = ({ handletogglestate }) => {
     try {
       const res = await simpleLogin.mutateAsync({ email, password });
       if (res !== null) {
-        Navigate(-1);
+        if (res.role === "admin") {
+          Navigate("/AdminDashboard");
+        } else {
+          Navigate(-1);
+        }
       }
     } catch (error) {
       setError("Invalid credentials");
